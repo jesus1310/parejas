@@ -90,7 +90,6 @@ public class Organizador
     public void muestraIntegrantes(int codigo){
         indicePareja = 0;
         for (String cadena : parejas){
-            cadena = parejas.get(indicePareja);
             String formatoCodigo = formateador.format(codigo);
             String formatoIndicePareja = formateador.format(indicePareja);
             if (formatoIndicePareja.equals(formatoCodigo)){
