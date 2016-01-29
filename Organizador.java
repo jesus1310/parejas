@@ -15,6 +15,10 @@ public class Organizador
     private ArrayList<String> listaAlumnos;
     // ArrayList para almacenar las parejas
     private ArrayList<String> parejas;
+    // Atributo para almacenar el indice de los alumnos
+    private int indiceAlumno;
+    // Atributo para almacenar el indice de las parejas
+    private int indicePareja;
     
     /**
      * Constructor for objects of class Organizador
@@ -24,6 +28,8 @@ public class Organizador
         formateador = new DecimalFormat("0000");
         listaAlumnos = new ArrayList<>();
         parejas = new ArrayList<>();
+        indiceAlumno = 0;
+        indicePareja = 0;
         listaAlumnos.add("Adeva Tranche, Adrián");
         listaAlumnos.add("Aller González, Francisco Javier");
         listaAlumnos.add("Álvarez Prieto, Noelia");
@@ -50,23 +56,15 @@ public class Organizador
         listaAlumnos.add("Sánchez Manzano, Adán");
         listaAlumnos.add("Serrano García, Verónica");
         listaAlumnos.add("Tascón González, Anibal");
-        // listaAlumnos.add("lopez perez,Pepito");
-    }
-
-    /**
-     * Método para desordenar el ArrayList
-     */
-    public void desordena(){
-        Collections.shuffle(listaAlumnos);
-        parejas.clear();
+        //listaAlumnos.add("lopez perez,Pepito");
     }
 
     /**
      * Método para crear parejas cada dos alumnos, si hay alumnos impares, una pareja tendrá 3
      */
     public void empareja(){
-        int indiceAlumno = 0;
-        int indicePareja = 0;
+        Collections.shuffle(listaAlumnos);
+        parejas.clear();
         if (listaAlumnos.size() % 2 != 0){
             listaAlumnos.get(indiceAlumno);
             parejas.add(listaAlumnos.get(indiceAlumno) + "---" + listaAlumnos.get(indiceAlumno + 1) + "---" + listaAlumnos.get(indiceAlumno + 2) + 
@@ -75,12 +73,29 @@ public class Organizador
             System.out.println(parejas.get(indicePareja));
             indicePareja = indicePareja + 1;
         }
+        
         while (indiceAlumno < listaAlumnos.size() - 1){
             listaAlumnos.get(indiceAlumno);
             parejas.add(listaAlumnos.get(indiceAlumno) + "---" + listaAlumnos.get(indiceAlumno + 1) +
             "(" + formateador.format(indicePareja) + ")");
             indiceAlumno = indiceAlumno + 2;
             System.out.println(parejas.get(indicePareja));
+            indicePareja = indicePareja + 1;
+        }
+    }
+    
+    /**
+     * Método que muestra los integrantes de cada pareja
+     */
+    public void muestraIntegrantes(int codigo){
+        indicePareja = 0;
+        for (String cadena : parejas){
+            cadena = parejas.get(indicePareja);
+            String formatoCodigo = formateador.format(codigo);
+            String formatoIndicePareja = formateador.format(indicePareja);
+            if (formatoIndicePareja.equals(formatoCodigo)){
+                System.out.println(cadena);
+            }
             indicePareja = indicePareja + 1;
         }
     }
