@@ -90,14 +90,19 @@ public class Organizador
      * Método que muestra los integrantes de cada pareja
      */
     public void muestraIntegrantes(int codigo){
-        indicePareja = 0;
-        for (String cadena : parejas){
-            String formatoCodigo = formateador.format(codigo);
-            String formatoIndicePareja = formateador.format(indicePareja);
-            if (formatoIndicePareja.equals(formatoCodigo)){
-                System.out.println(cadena);
+        if (codigo >= parejas.size()){
+            System.out.println("El código introducido no es válido, debe estar en el rango 0-" + (parejas.size()-1));
+        }
+        else{
+            indicePareja = 0;
+            for (String cadena : parejas){
+                String formatoCodigo = formateador.format(codigo);
+                String formatoIndicePareja = formateador.format(indicePareja);
+                if (formatoIndicePareja.equals(formatoCodigo)){
+                    System.out.println(cadena);
+                }
+                indicePareja = indicePareja + 1;
             }
-            indicePareja = indicePareja + 1;
         }
     }
 
@@ -106,13 +111,18 @@ public class Organizador
      */
     public void muestraSegundoIntegrante(int codigo){
         indicePareja = 0;
-        for (String cadena : parejas){
-            String formatoCodigo = formateador.format(codigo);
-            String formatoIndicePareja = formateador.format(indicePareja);
-            if (formatoIndicePareja.equals(formatoCodigo)){
-                System.out.println(listaAlumnos.get(codigo*2 + 1));
+        if (codigo >= parejas.size()){
+            System.out.println("El código introducido no es válido, debe estar en el rango 0-" + (parejas.size()-1));
+        }
+        else{
+            for (String cadena : parejas){
+                String formatoCodigo = formateador.format(codigo);
+                String formatoIndicePareja = formateador.format(indicePareja);
+                if (formatoIndicePareja.equals(formatoCodigo)){
+                    System.out.println(listaAlumnos.get(codigo*2 + 1));
+                }
+                indicePareja = indicePareja + 1;
             }
-            indicePareja = indicePareja + 1;
         }
     }
 }
