@@ -119,7 +119,12 @@ public class Organizador
                 String formatoCodigo = formateador.format(codigo);
                 String formatoIndicePareja = formateador.format(indicePareja);
                 if (formatoIndicePareja.equals(formatoCodigo)){
-                    System.out.println(listaAlumnos.get(codigo*2 + 1));
+                    if ((listaAlumnos.size() % 2 == 0) || (codigo == 0)){
+                        System.out.println(listaAlumnos.get(codigo*2 + 1));
+                    }
+                    else {
+                        System.out.println(listaAlumnos.get(codigo*2+2));
+                    }
                 }
                 indicePareja = indicePareja + 1;
             }
