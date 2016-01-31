@@ -19,7 +19,7 @@ public class Organizador
     private int indiceAlumno;
     // Atributo para almacenar el indice de las parejas
     private int indicePareja;
-    
+
     /**
      * Constructor for objects of class Organizador
      */
@@ -65,25 +65,27 @@ public class Organizador
     public void empareja(){
         Collections.shuffle(listaAlumnos);
         parejas.clear();
+        indiceAlumno = 0;
+        indicePareja = 0;
         if (listaAlumnos.size() % 2 != 0){
             listaAlumnos.get(indiceAlumno);
             parejas.add(listaAlumnos.get(indiceAlumno) + "---" + listaAlumnos.get(indiceAlumno + 1) + "---" + listaAlumnos.get(indiceAlumno + 2) + 
-            "(" + formateador.format(indicePareja) + ")");
+                "(" + formateador.format(indicePareja) + ")");
             indiceAlumno = indiceAlumno + 3;
             System.out.println(parejas.get(indicePareja));
             indicePareja = indicePareja + 1;
         }
-        
+
         while (indiceAlumno < listaAlumnos.size() - 1){
             listaAlumnos.get(indiceAlumno);
             parejas.add(listaAlumnos.get(indiceAlumno) + "---" + listaAlumnos.get(indiceAlumno + 1) +
-            "(" + formateador.format(indicePareja) + ")");
+                "(" + formateador.format(indicePareja) + ")");
             indiceAlumno = indiceAlumno + 2;
             System.out.println(parejas.get(indicePareja));
             indicePareja = indicePareja + 1;
         }
     }
-    
+
     /**
      * Método que muestra los integrantes de cada pareja
      */
@@ -94,6 +96,21 @@ public class Organizador
             String formatoIndicePareja = formateador.format(indicePareja);
             if (formatoIndicePareja.equals(formatoCodigo)){
                 System.out.println(cadena);
+            }
+            indicePareja = indicePareja + 1;
+        }
+    }
+
+    /**
+     * Método para mostrar el segundo integrante de una pareja
+     */
+    public void muestraSegundoIntegrante(int codigo){
+        indicePareja = 0;
+        for (String cadena : parejas){
+            String formatoCodigo = formateador.format(codigo);
+            String formatoIndicePareja = formateador.format(indicePareja);
+            if (formatoIndicePareja.equals(formatoCodigo)){
+                System.out.println(listaAlumnos.get(codigo*2 + 1));
             }
             indicePareja = indicePareja + 1;
         }
